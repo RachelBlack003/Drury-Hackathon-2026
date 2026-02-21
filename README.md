@@ -1,1 +1,1 @@
-# Drury-Hackathon-2026
+# Drury-Hackathon-2026 (Reverse Turing Test — Are you AI?)
