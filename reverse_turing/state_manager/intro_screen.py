@@ -1,5 +1,7 @@
 from state_manager.screen  import Screen
 from button import Button
+from textbox import Textbox
+from input_textbox import Input_textbox
 import pygame
 
 class IntroScreen(Screen): #intro screen inherents IntroScreen
@@ -10,10 +12,14 @@ class IntroScreen(Screen): #intro screen inherents IntroScreen
         self.begin_button = Button(
             screen = self.game.screen,
             text = "Begin Test", 
-            x=400,
+            x= 400,
             y = 600, 
             size = 40,
             padding=15
+        )
+        self.begin_textbox = Input_textbox(
+            screen = self.game.screen,
+            text = "Textboxtextttvoooxhi"
         )
 
 
@@ -40,3 +46,4 @@ class IntroScreen(Screen): #intro screen inherents IntroScreen
             self.screen.blit(text_surface, (100, 200 + i * 50))
 
         self.begin_button.render()
+        self.begin_textbox.render()
