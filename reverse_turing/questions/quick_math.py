@@ -1,5 +1,5 @@
 import pygame
-from text_handler import Text_handler
+from text_handler import Question_Text_handler
 from textbox import Textbox
 
 class QuickMath:
