@@ -5,6 +5,7 @@ from questions.mouse_trajectory import MouseTrajectory
 from questions.impossible_captcha import ImpossibleCaptcha
 from questions.preference import Preference
 from questions.quick_math import QuickMath
+from questions.reaction import Reaction
 #from questions.(fifth_question file name) import (fifth_question class name)
 
 class Handle_Questions(Screen):
@@ -16,6 +17,7 @@ class Handle_Questions(Screen):
             ImpossibleCaptcha,
             Preference,
             QuickMath,
+            Reaction
         ]
 
         self.question_index = 0
