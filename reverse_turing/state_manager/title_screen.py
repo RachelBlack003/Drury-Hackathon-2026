@@ -28,7 +28,6 @@ class TitleScreen(Screen):
 
     def start_game(self):
         from state_manager.intro_screen import IntroScreen
-        print("Switching to IntroScreen")
         self.game.current_screen = IntroScreen(self.game)
 
 

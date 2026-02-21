@@ -25,12 +25,13 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
-                elif event.type == pygame.KEYDOWN:
+                if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_q:
                         self.running = False
-                else: 
-                    if self.current_screen:
-                        self.current_screen.handle_event(event)
+               
+                if self.current_screen:
+                    self.current_screen.handle_event(event)
+                    
             if self.current_screen:
                 self.current_screen.update(fr)
                 self.current_screen.draw()

@@ -5,7 +5,6 @@ import pygame
 class IntroScreen(Screen): #intro screen inherents IntroScreen
     def __init__(self, game):
         super().__init__(game) #calls init method of inherented parent class
-        print("IntroScreen created")
         self.font = pygame.font.SysFont(None, 40)
 
         self.begin_button = Button(
@@ -19,8 +18,8 @@ class IntroScreen(Screen): #intro screen inherents IntroScreen
 
 
     def begin_test(self):
-        from ..questions.mouse_trajectory import MouseTrajectory
-        self.game.current_screen = MouseTrajectory(self.game)
+        from questions.handle_questions import Handle_Questions
+        self.game.current_screen = Handle_Questions(self.game)
 
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
