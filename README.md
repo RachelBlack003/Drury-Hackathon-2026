@@ -31,13 +31,6 @@ Players complete a series of behavioral challenges designed to evaluate patterns
 
 ---
 
-## 🛠 Built With
-
-- Python  
-- Pygame  
-
----
-
 ## Running the Project
 
 ```bash
