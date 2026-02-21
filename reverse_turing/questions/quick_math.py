@@ -9,7 +9,7 @@ class QuickMath:
         self.done = False
         self.font = pygame.font.SysFont(None, 40)
 
-        self.Text_handler = Text_handler()
+        # self.Text_handler = Text_handler()
 
         self.Textbox = Textbox(
             self.screen,
@@ -17,8 +17,8 @@ class QuickMath:
         )
 
     def handle_event(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            self.Textbox.update_text(self.Text_handler.test_lines[0])
+        # if event.type == pygame.MOUSEBUTTONDOWN:
+        #     self.Textbox.update_text(self.Text_handler.test_lines[0])
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE: # might change to button
                 self.done = True
