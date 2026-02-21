@@ -1,6 +1,6 @@
 
 import pygame
-from pygame.Surface import Surface
+from pygame.surface import Surface
 from pygame.event import Event
 
 
