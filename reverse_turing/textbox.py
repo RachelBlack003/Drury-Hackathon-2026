@@ -24,12 +24,19 @@ class Textbox:
         # Split text and render each line
         self.text = text
         
-        lines = self.text.split('\n')
+        words = self.text.split(' ')
         self.surfaces = []
         
-        # We only care about the first 3 lines for a fixed 3-line box
-        for line in lines[:3]:
-            surf = self.font.render(line, True, (255, 255, 255))
+        line = ""
+        for word in words:
+            if len(word) + len(line) < 52:
+                line = line + " " + word
+            else:
+                surf = self.font.render(line.strip(), True, (255, 255, 255))
+                self.surfaces.append(surf)
+                line = ""
+        if len(line) != 0:
+            surf = self.font.render(line.strip(), True, (255, 255, 255))
             self.surfaces.append(surf)
 
     def render(self):
