@@ -22,6 +22,7 @@ class Game:
         while self.running:
             fr = self.clock.tick(60)
 
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False

@@ -17,11 +17,27 @@ class Input_textbox:
         
         # This rect defines the physical box on the screen
         self.textbox_rect = pygame.Rect(self.x, self.y, self.width, self.line_height + self.padding)
+        self.update_text()
         
-        self.update_text(self.text)
 
-    def update_text(self, text):
-        self.text = text
+    def handle_input(self, event):
+        '''Returns true if enter is pressed.
+        Also updates the text.'''
+        if event.key == pygame.K_BACKSPACE:
+            if len(self.text) > 0:
+                    
+                # stores the text except last
+                # character
+                self.text = self.text[:-1]
+        elif event.key == pygame.K_RETURN:
+            return True
+        else:
+            self.text += event.unicode
+        self.update_text()
+        return False
+            
+
+    def update_text(self):
         # Render the text surface
         self.font_surface = self.font.render(self.text, True, (255, 255, 255)) # Changed to white for visibility
 
@@ -34,7 +50,6 @@ class Input_textbox:
     def render(self):
         # 1. Draw the background box (dark gray)
         pygame.draw.rect(self.screen, (50, 50, 50), self.textbox_rect)
-        
         # 2. Draw the border (light gray)
         pygame.draw.rect(self.screen, (150, 150, 150), self.textbox_rect, 2)
 

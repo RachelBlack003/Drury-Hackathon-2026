@@ -31,6 +31,8 @@ class IntroScreen(Screen): #intro screen inherents IntroScreen
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.begin_button.is_selected(event.pos):
                 self.begin_test()
+        if event.type == pygame.KEYDOWN:
+            self.begin_textbox.handle_input(event)
 
     def draw(self):
         self.screen.fill((20, 20, 40))
