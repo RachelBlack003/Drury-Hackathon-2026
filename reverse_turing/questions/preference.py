@@ -1,5 +1,6 @@
 import pygame
 from button import Button
+from textbox import Textbox
 
 class Preference:
     def __init__(self, controller):
@@ -12,8 +13,8 @@ class Preference:
             screen = self.screen,
             text = "Burnt Sienna", 
             x= 200,
-            y = 200, 
-            size = 40,
+            y = 250, 
+            size = 50,
             padding=15,
             font_color= (255,255,255),
             bg_color= (233, 116, 81)
@@ -23,8 +24,8 @@ class Preference:
             screen = self.screen,
             text = "  Smaragdine  ", 
             x= 600,
-            y = 200, 
-            size = 40,
+            y = 250, 
+            size = 50,
             padding=15,
             font_color= (255,255,255),
             bg_color= (74, 153, 118)
@@ -34,7 +35,7 @@ class Preference:
             text = "Banan-appeal", 
             x= 600,
             y = 400, 
-            size = 40,
+            size = 50,
             padding=15,
             font_color= (255,255,255),
             bg_color= (252,235,183)
@@ -44,13 +45,46 @@ class Preference:
             text = "       Blue        ", 
             x= 200,
             y = 400, 
-            size = 40,
+            size = 50,
             padding=15,
             font_color= (255,255,255),
             bg_color= (255,255,255)
         )
+        self.Pass = Button(
+            screen = self.screen,
+            text = "Pass", 
+            x= 700,
+            y = 495, 
+            size = 30,
+            padding=15,
+            font_color= (0,0,0),
+            bg_color= (230,230,230)
+        )
+
+        self.textBox = Textbox(
+            screen=self.screen,
+            text="Select your favorite color.",
+            y=550
+        )
 
     def handle_event(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if self.Smaragdine.is_selected(event.pos):
+                self.done = True
+                self.is_done()
+            if self.Banan_appeal.is_selected(event.pos):
+                self.done = True
+                self.is_done()
+            if self.Blue.is_selected(event.pos):
+                self.done = True
+                self.is_done()
+            if self.Burnt_Sienna.is_selected(event.pos):
+                self.done = True
+                self.is_done()
+            if self.Pass.is_selected(event.pos):
+                self.done = True
+                self.is_done()
+        
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE: # might change to button
                 self.done = True
@@ -60,12 +94,12 @@ class Preference:
         pass
 
     def draw(self, screen):
-        text = self.font.render("Preference", True, (255,255,255))
-        screen.blit(text, (250, 300))
         self.Smaragdine.render()
         self.Burnt_Sienna.render()
         self.Banan_appeal.render()
         self.Blue.render()
+        self.Pass.render()
+        self.textBox.render()
 
     def is_done(self):
         return self.done
