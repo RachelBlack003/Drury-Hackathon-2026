@@ -87,7 +87,6 @@ class Reaction:
         if self.Text_handler.is_active():
             self.Textbox.render()
         else:
-            self._render_title(screen)
             self.button.render()
 
     def _render_title(self, screen):

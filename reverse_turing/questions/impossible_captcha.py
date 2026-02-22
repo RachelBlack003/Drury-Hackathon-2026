@@ -87,6 +87,15 @@ class ImpossibleCaptcha:
             bg_color= (230,230,230)
         )
 
+        self.captcha_buttons = [
+            self.captcha_one,
+            self.captcha_two,
+            self.captcha_three,
+            self.captcha_four,
+            self.captcha_five,
+            self.captcha_six
+        ]
+
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN and self.Text_handler.is_active():
             if self.Text_handler.is_active():
@@ -97,21 +106,21 @@ class ImpossibleCaptcha:
                     self.done = True
                     self.is_done()
 
-        elif event.type == pygame.MOUSEBUTTONDOWN and not self.soft_done:
-            if self.captcha_one.is_selected(event.pos):
-                self.lose()
-            if self.captcha_two.is_selected(event.pos):
-                self.lose()
-            if self.captcha_three.is_selected(event.pos):
-                self.lose()
-            if self.captcha_four.is_selected(event.pos):
-                self.lose()
-            if self.captcha_five.is_selected(event.pos):
-                self.lose()
-            if self.captcha_six.is_selected(event.pos):
-                self.lose()
-            if self.Pass.is_selected(event.pos):
-                self.win()
+        #elif event.type == pygame.MOUSEBUTTONDOWN and not self.soft_done:
+        #    if self.captcha_one.is_selected(event.pos):
+        #        self.lose()
+        #    if self.captcha_two.is_selected(event.pos):
+        #        self.lose()
+        #    if self.captcha_three.is_selected(event.pos):
+        #        self.lose()
+        #    if self.captcha_four.is_selected(event.pos):
+        #        self.lose()
+        #    if self.captcha_five.is_selected(event.pos):
+        #        self.lose()
+        #    if self.captcha_six.is_selected(event.pos):
+        #        self.lose()
+        #    if self.Pass.is_selected(event.pos):
+        #        self.win()
                 
 
     def win(self):
@@ -133,8 +142,6 @@ class ImpossibleCaptcha:
         if self.Text_handler.is_active():
             self.Textbox.render()
         else:
-            text = self.font.render("Impossible Captcha", True, (255,255,255))
-            screen.blit(text, (250, 300))
             self.captcha_one.render()
             self.captcha_two.render()
             self.captcha_three.render()

@@ -143,7 +143,6 @@ class MouseTrajectory:
             self.Textbox.render()
             return
         
-        self._render_title(screen) 
         pygame.draw.rect(screen, (200, 50, 50), self.rect)
         self.trajectory_image.render()
 
