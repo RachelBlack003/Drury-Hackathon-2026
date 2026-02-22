@@ -16,8 +16,10 @@ class Question_Text_handler:
         self.introduction_lines = self.introduction_file.readlines()
         self.pass_lines = self.pass_file.readlines()
         self.fail_lines = self.fail_file.readlines()
-
-        self.current_text = [self.introduction_lines, 0]
+        if len(self.introduction_lines) > 0:
+            self.current_text = [self.introduction_lines, 0]
+        else:
+            self.current_text = [["---NO TEXT PRESENT---"],0]
         #Spacebar will be used to go to the next dialog option. If the box is
         #active, then it will do it. Otherwise, it won't.
         self.active = True
@@ -33,12 +35,18 @@ class Question_Text_handler:
                 return None, False
             
     def win(self):
-        self.current_text = (self.pass_lines, 0)
+        if len(self.pass_lines) > 0:
+            self.current_text = [self.pass_lines, 0]
+        else:
+            self.current_text = [["---NO TEXT PRESENT---"],0]
         self.active = True
         return self.get_text()
 
     def lose(self):
-        self.current_text = (self.fail_lines, 0)
+        if len(self.fail_lines) > 0:
+            self.current_text = [self.fail_lines, 0]
+        else:
+            self.current_text = [["---NO TEXT PRESENT---"],0]
         self.active = True
         return self.get_text()
     
