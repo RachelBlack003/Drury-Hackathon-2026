@@ -89,9 +89,33 @@ class ImpossibleCaptcha:
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN and self.Text_handler.is_active():
             if self.Text_handler.is_active():
-                text, _continue = self.Text_handler.next() # type: ignore
+                text, _continue = self.Text_handler.next()
                 if _continue:
                     self.Textbox.update_text(text)
+
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if self.captcha_one.is_selected(event.pos):
+                self.done = True
+                self.is_done()
+            if self.captcha_two.is_selected(event.pos):
+                self.done = True
+                self.is_done()
+            if self.captcha_three.is_selected(event.pos):
+                self.done = True
+                self.is_done()
+            if self.captcha_four.is_selected(event.pos):
+                self.done = True
+                self.is_done()
+            if self.captcha_five.is_selected(event.pos):
+                self.done = True
+                self.is_done()
+            if self.captcha_six.is_selected(event.pos):
+                self.done = True
+                self.is_done()
+            if self.Pass.is_selected(event.pos):
+                self.done = True
+                self.is_done()
+                
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE: # might change to button
                 self.done = True
