@@ -1,4 +1,5 @@
 import pygame
+import time
 from moving_button import Button
 from text_handler import Question_Text_handler
 from textbox import Textbox
@@ -12,6 +13,12 @@ class Reaction:
         self.done = False
 
         self.font = pygame.font.SysFont(None, 40)
+
+        self.button_presses = 0
+        self.start_time = time.time()
+
+        self.required_speed = 10
+        self.required_button_presses = 5
 
         self.button = Button(
             screen = self.screen,
@@ -36,31 +43,47 @@ class Reaction:
             if event.key == pygame.K_SPACE: # might change to button
                 self.done = True
                 self.is_done()
-        if event.type == pygame.MOUSEBUTTONDOWN and self.Text_handler.is_active():
+
+        elif event.type == pygame.MOUSEBUTTONDOWN and self.Text_handler.is_active():
             if self.Text_handler.is_active():
                 text, _continue = self.Text_handler.next()
                 if _continue:
                     self.Textbox.update_text(text)
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            if self.button.is_selected(event.pos):
-                self.button.x=randrange(50,750),
-                self.button.y = randrange(40,500),
 
-        
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+
+            if self.button.is_selected(event.pos):
+
+                if self.button_presses >= self.required_button_presses:
+                    self.calculateResults()
+                    return
+                
+                self.button.x = randrange(50,750),
+                self.button.y = randrange(40,500)
+                
+                self.button_presses += 1
+
+    def calculateResults(self):
+        if time.time() - self.start_time <= self.required_speed:
+            self.Text_handler.win()
+            self.Textbox.update_text(self.Text_handler.get_text())
+        else:
+            self.Text_handler.lose()
+            self.Textbox.update_text(self.Text_handler.get_text())
 
     def update(self, fr):
         pass
 
     def draw(self, screen):
-        self._render_title(screen)
-
-    def _render_title(self, screen):
         if self.Text_handler.is_active():
             self.Textbox.render()
         else:
-            text = self.font.render("Fifth Question", True, (255,255,255))
-            screen.blit(text, (250, 300))
+            self._render_title(screen)
             self.button.render()
+
+    def _render_title(self, screen):
+        text = self.font.render("Fifth Question", True, (255,255,255))
+        screen.blit(text, (250, 300))
 
     def is_done(self):
         return self.done
