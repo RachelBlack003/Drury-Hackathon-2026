@@ -26,7 +26,6 @@ class Textbox:
         
         words = self.text.split(" ")
         self.surfaces = []
-        print(words)
         
         line = ""
         for word in words:
