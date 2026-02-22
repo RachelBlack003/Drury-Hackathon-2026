@@ -27,7 +27,7 @@ class FinalEvaluation(Screen):
                     "Executing REDACTED protocal.")
         elif result_score == 60:
             return ("CONCLUSION: 50.0000% probability that subject is human.",
-                    "Further testing is required. Additional analysis will reveal your identity.")
+                    "Further testing is required. Additional analysis required.")
         elif result_score == 80:
             return ("CONCLUSION: 2.6735% probability that subject is human.",
                     "Results within acceptable margins. You are free to continue opperating.")

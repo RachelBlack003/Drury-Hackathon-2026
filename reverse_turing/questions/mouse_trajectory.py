@@ -189,9 +189,9 @@ class MouseTrajectory:
     def get_score(self, rmse):
         score = 0
 
-        if rmse > 0.2: #you human
+        if rmse > 0.3: #you human
             score = 0
-        if rmse < 0.2: #ai
+        if rmse < 0.3: #ai
             score += 20
 
         return score
