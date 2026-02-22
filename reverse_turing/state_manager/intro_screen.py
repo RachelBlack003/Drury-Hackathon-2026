@@ -17,10 +17,6 @@ class IntroScreen(Screen): #intro screen inherents IntroScreen
             size = 40,
             padding=15
         )
-        self.begin_textbox = Input_textbox(
-            screen = self.game.screen,
-            text = ""
-        )
 
 
     def begin_test(self):
@@ -47,4 +43,3 @@ class IntroScreen(Screen): #intro screen inherents IntroScreen
             self.screen.blit(text_surface, (100, 200 + i * 50))
 
         self.begin_button.render()
-        self.begin_textbox.render()

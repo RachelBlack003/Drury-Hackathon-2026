@@ -61,7 +61,8 @@ class QuickMath:
             self.time_allowed = int(ping)/1000
         except:
             self.Input_textbox.text = "PLEASE ENTER A NUMBER"
-            pass
+            self.Input_textbox.update_text()
+            return
         self.Input_textbox.text = ""
         self.start_time = time.time()
         self.inputed_ping = True
@@ -73,7 +74,8 @@ class QuickMath:
             result = int(result)
         except:
             self.Input_textbox.text = "PLEASE ENTER A NUMBER"
-            pass
+            self.Input_textbox.update_text()
+            return
         if result == self.solution and time.time() - self.start_time < self.time_allowed:
             self.controller.game.results.append(20)
             self.win()

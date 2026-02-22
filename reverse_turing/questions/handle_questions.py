@@ -13,11 +13,11 @@ class Handle_Questions(Screen):
         super().__init__(game)
 
         self.question_classes = [
+            QuickMath,
+            Reaction,
             MouseTrajectory,
             ImpossibleCaptcha,
-            Preference,
-            QuickMath,
-            Reaction
+            Preference
         ]
 
         self.question_index = 0
