@@ -40,12 +40,7 @@ class Reaction:
         )
 
     def handle_event(self, event):
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE: # might change to button
-                self.done = True
-                self.is_done()
-
-        elif event.type == pygame.MOUSEBUTTONDOWN and self.Text_handler.is_active():
+        if event.type == pygame.MOUSEBUTTONDOWN and self.Text_handler.is_active():
             if self.Text_handler.is_active():
                 text, _continue = self.Text_handler.next() #type: ignore
                 if _continue:

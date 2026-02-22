@@ -91,21 +91,18 @@ class Preference:
                 self.is_done()
             if self.Pass.is_selected(event.pos):
                 self.win()
-        
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE: # might change to button
-                self.done = True
-                self.is_done()
 
     def win(self):
         self.soft_done = True
         self.Text_handler.win()
         self.Textbox.update_text(self.Text_handler.get_text())
+        self.controller.game.results.append(20)
 
     def lose(self):
         self.soft_done = False
         self.Text_handler.lose()
         self.Textbox.update_text(self.Text_handler.get_text())
+        self.controller.game.results.append(0)
 
     def update(self, dt):
         pass

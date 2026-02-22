@@ -1,0 +1,2 @@
+This test is designed to measure your abstract computing capabilities.
+Please select your favorite color out of the presented options.

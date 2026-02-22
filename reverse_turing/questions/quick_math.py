@@ -49,9 +49,6 @@ class QuickMath:
                     self.done = True
                     self.is_done()
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE: # might change to button
-                self.done = True
-                self.is_done()
             if self.inputed_ping:
                 if self.Input_textbox.handle_input(event):
                     self.compute_results(self.Input_textbox.text)
@@ -65,6 +62,7 @@ class QuickMath:
         except:
             self.Input_textbox.text = "PLEASE ENTER A NUMBER"
             pass
+        self.Input_textbox.text = ""
         self.start_time = time.time()
         self.inputed_ping = True
         self.Second_textbox.update_text(self.test_instructions)

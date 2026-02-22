@@ -1,3 +1,2 @@
-Here is some test text.
-Second line testing.
-Clicking should go to next screen now.
+Results within acceptable parameters.
+Further testing required.

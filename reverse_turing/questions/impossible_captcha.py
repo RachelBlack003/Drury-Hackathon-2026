@@ -10,6 +10,7 @@ class ImpossibleCaptcha:
         self.controller = controller
         self.screen = controller.screen
         self.done = False
+        self.soft_done = False
         self.font = pygame.font.SysFont(None, 40)
 
         self.Text_handler = Question_Text_handler("impossible_captcha")
@@ -96,33 +97,34 @@ class ImpossibleCaptcha:
                     self.done = True
                     self.is_done()
 
-        elif event.type == pygame.MOUSEBUTTONDOWN:
+        elif event.type == pygame.MOUSEBUTTONDOWN and not self.soft_done:
             if self.captcha_one.is_selected(event.pos):
-                self.done = True
-                self.is_done()
+                self.lose()
             if self.captcha_two.is_selected(event.pos):
-                self.done = True
-                self.is_done()
+                self.lose()
             if self.captcha_three.is_selected(event.pos):
-                self.done = True
-                self.is_done()
+                self.lose()
             if self.captcha_four.is_selected(event.pos):
-                self.done = True
-                self.is_done()
+                self.lose()
             if self.captcha_five.is_selected(event.pos):
-                self.done = True
-                self.is_done()
+                self.lose()
             if self.captcha_six.is_selected(event.pos):
-                self.done = True
-                self.is_done()
+                self.lose()
             if self.Pass.is_selected(event.pos):
-                self.done = True
-                self.is_done()
+                self.win()
                 
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE: # might change to button
-                self.done = True
-                self.is_done()
+
+    def win(self):
+        self.soft_done = True
+        self.Text_handler.win()
+        self.Textbox.update_text(self.Text_handler.get_text())
+        self.controller.game.results.append(20)
+
+    def lose(self):
+        self.soft_done = False
+        self.Text_handler.lose()
+        self.Textbox.update_text(self.Text_handler.get_text())
+        self.controller.game.results.append(0)
 
     def update(self, dt):
         pass

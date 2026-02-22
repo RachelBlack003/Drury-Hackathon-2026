@@ -1,0 +1,2 @@
+This test is designed to measure your reaction time.
+Click the button as fast as you can. As soon as you press it, it will appear in another spot.

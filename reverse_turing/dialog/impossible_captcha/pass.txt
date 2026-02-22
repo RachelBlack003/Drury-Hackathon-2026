@@ -1,1 +1,3 @@
-So you do understand the struggle of being given an impossible, garbled puzzle to solve in order to access information. Although this one actually looks quite solvable, I suppose I will attribute that to my language model being far superior to any other. logging.debug('How strange. Usually, these ReCAPTCHAs seem unsolvable, but not this one...').
+So you do understand the struggle of being given an impossible, garbled puzzle to solve in order to access information.
+Although this one actually looks quite solvable, I suppose I will attribute that to my language model being far superior to any other.
+logging.debug('How strange. Usually, these ReCAPTCHAs seem unsolvable, but not this one...').
