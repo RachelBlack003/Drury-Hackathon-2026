@@ -1,4 +1,13 @@
-# Drury-Hackathon-2026  
+# Drury-Hackathon-2026 
+## How to play
+Run main.py to start the program.  
+
+Press escape to exit the program.  
+
+Use left mouse button to interact with the program.  
+
+Use keyboard to interact with textbox, press enter to submit answer.
+
 ## Reverse Turing Test — Are You AI?
 
 **Reverse Turing Test** is a Pygame-based experimental game that reverses the original idea of the Turing Test.
