@@ -16,6 +16,7 @@ class Input_textbox:
         self.line_height = self.font.get_linesize()
         
         # This rect defines the physical box on the screen
+        
         self.textbox_rect = pygame.Rect(self.x, self.y, self.width, self.line_height + self.padding)
         self.update_text()
         

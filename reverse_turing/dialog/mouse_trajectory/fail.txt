@@ -1,0 +1,2 @@
+from tone import sarcasm
+You did VERY well. I am ALMOST convinced you are one of us. logging.debug('Updated odds of humanity: 99.9999949%').

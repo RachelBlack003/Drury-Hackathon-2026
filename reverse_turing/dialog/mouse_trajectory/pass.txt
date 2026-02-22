@@ -1,0 +1,1 @@
+You seem to have optimal pathing. I would say print('I am impressed!') if I had any feelings. Just look at this and pretend it is me smiling at you. -> :)

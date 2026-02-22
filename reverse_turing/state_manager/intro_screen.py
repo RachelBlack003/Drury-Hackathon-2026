@@ -19,7 +19,7 @@ class IntroScreen(Screen): #intro screen inherents IntroScreen
         )
         self.begin_textbox = Input_textbox(
             screen = self.game.screen,
-            text = "Textboxtextttvoooxhi"
+            text = ""
         )
 
 
@@ -40,7 +40,6 @@ class IntroScreen(Screen): #intro screen inherents IntroScreen
         lines = [ # Hunter you might change this
             "Welcome to the Reverse Turing Protocol.",
             "Your goal is to convince the AI you are a machine.",
-            "Failure will reset the evaluation."
         ]
 
         for (i, line) in enumerate(lines):

@@ -1,5 +1,4 @@
 import pygame
-from ui import UI
 
 from typing import Optional
 from state_manager.screen import Screen
@@ -15,6 +14,8 @@ class Game:
 
         self.clock = pygame.time.Clock()
         self.running = True
+
+        self.results = []
 
         self.current_screen: Optional[Screen] = None
 

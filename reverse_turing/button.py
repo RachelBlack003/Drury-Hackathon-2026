@@ -1,6 +1,5 @@
 import pygame
 from pygame.surface import Surface
-from color import Color
 
 class Button:
     def __init__(self, screen, text, x, y, size, padding=10, font_color = (0,0,0), bg_color = (240,240,240)):

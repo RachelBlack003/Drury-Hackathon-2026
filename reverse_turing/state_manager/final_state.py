@@ -1,4 +1,5 @@
 from state_manager.screen import Screen
+from game import Game
 import pygame
 
 class FinalEvaluation(Screen):
@@ -8,13 +9,26 @@ class FinalEvaluation(Screen):
         self.font = pygame.font.SysFont(None, 50)
         self.small_font = pygame.font.SysFont(None, 36)
 
-        # Example evaluation logic
-        self.result_text = self.evaluate_player() #TODO 
+        self.result_text = self.evaluate_player()
 
     def evaluate_player(self):
-        # Placeholder logic
-        # TODO: compute from stored score
-        return "Evaluation Complete: HUMAN DETECTED"
+
+        #TODO: Put the text in the correct spot 
+        
+        result_score = sum(self.game.results)
+        
+        if result_score == 20: 
+            
+            return "Some Text"
+        elif result_score == 40:
+            return "Some Text"
+        elif result_score == 60:
+            return "Some Text"
+        elif result_score == 80:
+            return "Some Text"
+        elif result_score == 100:
+            return "Some Text"
+        
 
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN:
