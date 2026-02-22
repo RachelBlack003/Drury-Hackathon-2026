@@ -11,7 +11,7 @@ class Captcha_button:
         self.image = pygame.transform.scale(self.image, (width, height))
         self.selected = False
 
-    def is_clicked(self, mouse_pos):
+    def is_selected(self, mouse_pos):
         return self.rect.collidepoint(mouse_pos)
 
     def toggle(self):
