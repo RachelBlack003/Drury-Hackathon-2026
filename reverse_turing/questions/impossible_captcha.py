@@ -12,7 +12,7 @@ class ImpossibleCaptcha:
         self.done = False
         self.font = pygame.font.SysFont(None, 40)
 
-        self.Text_handler = Question_Text_handler("quick_math")
+        self.Text_handler = Question_Text_handler("impossible_captcha")
 
         self.Textbox = Textbox(
             self.screen,

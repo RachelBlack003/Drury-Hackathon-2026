@@ -1,5 +1,6 @@
 from typing import Tuple
-
+from pathlib import Path
+from trajectory_image import Trajectory_image
 import pygame
 import random 
 import math
@@ -17,8 +18,8 @@ class MouseTrajectory:
         self.font = pygame.font.SysFont(None, 40)
 
         #random box 
-        self.rect_size = 60
-        self.rect_x = random.randint(100, 700)
+        self.rect_size = 30
+        self.rect_x = random.randint(30, 500)
         self.rect_y = random.randint(100, 500)
         self.rect = pygame.Rect(
             self.rect_x,
@@ -36,11 +37,22 @@ class MouseTrajectory:
         self.finish_timer = 0
 
 
-        self.Text_handler = Question_Text_handler("preference")
+        self.Text_handler = Question_Text_handler("mouse_trajectory")
 
         self.Textbox = Textbox(
             self.screen,
             text=self.Text_handler.get_text()
+        )
+
+        image_path = Path(__file__).resolve().parent.parent / "assets" / "i-am-machine.png"
+
+        self.trajectory_image = Trajectory_image(
+            screen = self.screen,
+            img = str(image_path),
+            x = self.rect_x-23,
+            y = self.rect_y-15,
+            width = 300,
+            height = 60
         )
 
     def handle_event(self, event):
@@ -122,9 +134,14 @@ class MouseTrajectory:
             
         
     def draw(self, screen):
-        self._render_title(screen)
 
+        if self.Text_handler.is_active():
+            self.Textbox.render()
+            return
+        
+        self._render_title(screen) 
         pygame.draw.rect(screen, (200, 50, 50), self.rect)
+        self.trajectory_image.render()
 
         # Draw trajectory
         if len(self.mouse_pos) > 1:
@@ -138,11 +155,8 @@ class MouseTrajectory:
 
 
     def _render_title(self, screen):
-        if self.Text_handler.is_active():
-            self.Textbox.render()
-        else:
-            text = self.font.render("Mouse Trajectory Test", True, (255,255,255))
-            screen.blit(text, (250, 300))
+        text = self.font.render("Mouse Trajectory Test", True, (255,255,255))
+        screen.blit(text, (250, 300))
 
     def is_done(self):
         return self.done

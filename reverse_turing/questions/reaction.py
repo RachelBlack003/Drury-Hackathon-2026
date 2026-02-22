@@ -16,6 +16,7 @@ class Reaction:
 
         self.button_presses = 0
         self.start_time = time.time()
+        self.end_time = None
 
         self.required_speed = 10
         self.required_button_presses = 5
@@ -31,7 +32,7 @@ class Reaction:
             bg_color= (230,230,230)
         )
 
-        self.Text_handler = Question_Text_handler("quick_math")
+        self.Text_handler = Question_Text_handler("reaction")
 
         self.Textbox = Textbox(
             self.screen,
@@ -49,12 +50,15 @@ class Reaction:
                 text, _continue = self.Text_handler.next() #type: ignore
                 if _continue:
                     self.Textbox.update_text(text)
+                elif self.Text_handler.is_final_text():
+                    self.done = True
+                    self.is_done()
         elif event.type == pygame.MOUSEBUTTONDOWN:
 
             if self.button.is_selected(event.pos):
 
                 if self.button_presses >= self.required_button_presses:
-                    self.calculateResults()
+                    self.hande_results()
                     return
                 
                 self.button.x = randrange(50,750),
@@ -62,13 +66,24 @@ class Reaction:
                 
                 self.button_presses += 1
 
-    def calculateResults(self):
-        if time.time() - self.start_time <= self.required_speed:
+    def hande_results(self):
+        self.end_time = time.time()
+        score = self.get_score()
+
+        if score == 20:
             self.Text_handler.win()
             self.Textbox.update_text(self.Text_handler.get_text())
         else:
             self.Text_handler.lose()
             self.Textbox.update_text(self.Text_handler.get_text())
+        self.controller.game.results.append(score)
+
+    def get_score(self):
+        score = 0
+        if self.end_time - self.start_time <= self.required_speed:
+            return 20
+        else:
+            return 0
 
     def update(self, fr):
         pass

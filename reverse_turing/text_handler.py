@@ -16,6 +16,9 @@ class Question_Text_handler:
         self.introduction_lines = self.introduction_file.readlines()
         self.pass_lines = self.pass_file.readlines()
         self.fail_lines = self.fail_file.readlines()
+
+        self.final_text = False
+
         if len(self.introduction_lines) > 0:
             self.current_text = [self.introduction_lines, 0]
         else:
@@ -39,6 +42,7 @@ class Question_Text_handler:
             self.current_text = [self.pass_lines, 0]
         else:
             self.current_text = [["---NO TEXT PRESENT---"],0]
+        self.final_text = True
         self.active = True
         return self.get_text()
 
@@ -47,6 +51,7 @@ class Question_Text_handler:
             self.current_text = [self.fail_lines, 0]
         else:
             self.current_text = [["---NO TEXT PRESENT---"],0]
+        self.final_text = True
         self.active = True
         return self.get_text()
     
@@ -55,6 +60,9 @@ class Question_Text_handler:
     
     def is_active(self):
         return self.active
+    
+    def is_final_text(self):
+        return self.final_text
 
     
 
