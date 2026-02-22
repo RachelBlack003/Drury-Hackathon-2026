@@ -1,4 +1,6 @@
 import pygame
+from text_handler import Question_Text_handler
+from textbox import Textbox
 
 class MouseTrajectory:
     def __init__(self, controller):
@@ -9,7 +11,19 @@ class MouseTrajectory:
 
         self.font = pygame.font.SysFont(None, 40)
 
+        self.Text_handler = Question_Text_handler("preference")
+
+        self.Textbox = Textbox(
+            self.screen,
+            text=self.Text_handler.get_text()
+        )
+
     def handle_event(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN and self.Text_handler.is_active():
+            if self.Text_handler.is_active():
+                text, _continue = self.Text_handler.next()
+                if _continue:
+                    self.Textbox.update_text(text)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE: # might change to button
                 self.done = True
@@ -24,8 +38,11 @@ class MouseTrajectory:
         self._render_title(screen)
 
     def _render_title(self, screen):
-        text = self.font.render("Mouse Trajectory Test", True, (255,255,255))
-        screen.blit(text, (250, 300))
+        if self.Text_handler.is_active():
+            self.Textbox.render()
+        else:
+            text = self.font.render("Mouse Trajectory Test", True, (255,255,255))
+            screen.blit(text, (250, 300))
 
     def is_done(self):
         return self.done

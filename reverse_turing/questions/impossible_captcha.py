@@ -1,4 +1,6 @@
 import pygame
+from textbox import Textbox
+from text_handler import Question_Text_handler
 from captcha_button import Captcha_button
 
 class ImpossibleCaptcha:
@@ -7,6 +9,13 @@ class ImpossibleCaptcha:
         self.screen = controller.screen
         self.done = False
         self.font = pygame.font.SysFont(None, 40)
+
+        self.Text_handler = Question_Text_handler("quick_math")
+
+        self.Textbox = Textbox(
+            self.screen,
+            text=self.Text_handler.get_text()
+        )
 
         self.captcha_one = Captcha_button(
             screen = self.screen,
@@ -18,6 +27,11 @@ class ImpossibleCaptcha:
         )
 
     def handle_event(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN and self.Text_handler.is_active():
+            if self.Text_handler.is_active():
+                text, _continue = self.Text_handler.next()
+                if _continue:
+                    self.Textbox.update_text(text)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE: # might change to button
                 self.done = True
@@ -27,9 +41,12 @@ class ImpossibleCaptcha:
         pass
 
     def draw(self, screen):
-        text = self.font.render("Impossible Captcha", True, (255,255,255))
-        screen.blit(text, (250, 300))
-        self.captcha_one.render()
+        if self.Text_handler.is_active():
+            self.Textbox.render()
+        else:
+            text = self.font.render("Impossible Captcha", True, (255,255,255))
+            screen.blit(text, (250, 300))
+            self.captcha_one.render()
 
     def is_done(self):
         return self.done

@@ -31,10 +31,11 @@ class QuickMath:
         pass
 
     def draw(self, screen):
-        text = self.font.render("Quick Math", True, (255,255,255))
-        screen.blit(text, (250, 300))
         if self.Text_handler.is_active():
             self.Textbox.render()
+        else:
+            text = self.font.render("Quick Math", True, (255,255,255))
+            screen.blit(text, (250, 300))
 
     def is_done(self):
         return self.done

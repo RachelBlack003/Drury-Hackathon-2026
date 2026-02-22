@@ -21,9 +21,12 @@ class Button:
         self.button_rect = self.text_rect.inflate(padding * 2, padding * 2)
 
     def is_selected(self, mouse_pos):
-        self.text_rect = self.font_surface.get_rect(center=(randrange(80,720), randrange(60,500),))
-        self.button_rect = self.text_rect.inflate(self.padding * 2, self.padding * 2)
-        return self.button_rect.collidepoint(mouse_pos)
+        if self.button_rect.collidepoint(mouse_pos):
+            self.text_rect = self.font_surface.get_rect(center=(randrange(80,720), randrange(60,500),))
+            self.button_rect = self.text_rect.inflate(self.padding * 2, self.padding * 2)
+            return True
+        else:
+            return False
 
     def render(self):
         mouse_pos = pygame.mouse.get_pos()
