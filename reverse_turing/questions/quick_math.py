@@ -110,8 +110,9 @@ class QuickMath:
         else:
             self.Second_textbox.render()
             self.Input_textbox.render()
-            text = self.font.render(self.equation_text, True, (255,255,255))
-            screen.blit(text, (300, 300))
+            if self.inputed_ping:
+                text = self.font.render(self.equation_text, True, (255,255,255))
+                screen.blit(text, (300, 300))
 
     def is_done(self):
         return self.done
