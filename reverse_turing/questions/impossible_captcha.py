@@ -3,6 +3,7 @@ from pathlib import Path
 from textbox import Textbox
 from text_handler import Question_Text_handler
 from captcha_button import Captcha_button
+from button import Button
 
 class ImpossibleCaptcha:
     def __init__(self, controller):
@@ -23,10 +24,66 @@ class ImpossibleCaptcha:
         self.captcha_one = Captcha_button(
             screen = self.screen,
             img = str(image_path),
-            x = 200,
-            y = 200,
-            width = 200,
-            height = 200
+            x = 150,
+            y = 175,
+            width = 150,
+            height = 150
+        )
+
+        self.captcha_two = Captcha_button(
+            screen = self.screen,
+            img = str(image_path),
+            x = 325,
+            y = 175,
+            width = 150,
+            height = 150
+        )
+
+        self.captcha_three = Captcha_button(
+            screen = self.screen,
+            img = str(image_path),
+            x = 500,
+            y = 175,
+            width = 150,
+            height = 150
+        )
+
+        self.captcha_four = Captcha_button(
+            screen = self.screen,
+            img = str(image_path),
+            x = 150,
+            y = 350,
+            width = 150,
+            height = 150
+        )
+
+        self.captcha_five = Captcha_button(
+            screen = self.screen,
+            img = str(image_path),
+            x = 325,
+            y = 350,
+            width = 150,
+            height = 150
+        )
+
+        self.captcha_six = Captcha_button(
+            screen = self.screen,
+            img = str(image_path),
+            x = 500,
+            y = 350,
+            width = 150,
+            height = 150
+        )
+
+        self.Pass = Button(
+            screen = self.screen,
+            text = "Pass", 
+            x= 600,
+            y = 600, 
+            size = 30,
+            padding=15,
+            font_color= (0,0,0),
+            bg_color= (230,230,230)
         )
 
     def handle_event(self, event):
@@ -50,6 +107,12 @@ class ImpossibleCaptcha:
             text = self.font.render("Impossible Captcha", True, (255,255,255))
             screen.blit(text, (250, 300))
             self.captcha_one.render()
+            self.captcha_two.render()
+            self.captcha_three.render()
+            self.captcha_four.render()
+            self.captcha_five.render()
+            self.captcha_six.render()
+            self.Pass.render()
 
     def is_done(self):
         return self.done
