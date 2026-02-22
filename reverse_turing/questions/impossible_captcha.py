@@ -22,79 +22,34 @@ class ImpossibleCaptcha:
 
         image_path = Path(__file__).resolve().parent.parent / "assets" / "ManWaving.jpg"
 
-        self.captcha_one = Captcha_button(
-            screen = self.screen,
-            img = str(image_path),
-            x = 150,
-            y = 175,
-            width = 150,
-            height = 150
-        )
+        self.captcha_buttons = []
+        positions = [
+            (150, 175), (325, 175), (500, 175),
+            (150, 350), (325, 350), (500, 350)
+        ]
 
-        self.captcha_two = Captcha_button(
-            screen = self.screen,
-            img = str(image_path),
-            x = 325,
-            y = 175,
-            width = 150,
-            height = 150
-        )
-
-        self.captcha_three = Captcha_button(
-            screen = self.screen,
-            img = str(image_path),
-            x = 500,
-            y = 175,
-            width = 150,
-            height = 150
-        )
-
-        self.captcha_four = Captcha_button(
-            screen = self.screen,
-            img = str(image_path),
-            x = 150,
-            y = 350,
-            width = 150,
-            height = 150
-        )
-
-        self.captcha_five = Captcha_button(
-            screen = self.screen,
-            img = str(image_path),
-            x = 325,
-            y = 350,
-            width = 150,
-            height = 150
-        )
-
-        self.captcha_six = Captcha_button(
-            screen = self.screen,
-            img = str(image_path),
-            x = 500,
-            y = 350,
-            width = 150,
-            height = 150
-        )
+        for x, y in positions:
+            self.captcha_buttons.append(
+                Captcha_button(
+                    screen=self.screen,
+                    img=str(image_path),
+                    x=x,
+                    y=y,
+                    width=150,
+                    height=150
+                )
+            )
 
         self.Pass = Button(
-            screen = self.screen,
-            text = "Pass", 
-            x= 600,
-            y = 600, 
-            size = 30,
+            screen=self.screen,
+            text="Pass",
+            x=600,
+            y=600,
+            size=30,
             padding=15,
-            font_color= (0,0,0),
-            bg_color= (230,230,230)
+            font_color=(0, 0, 0),
+            bg_color=(230, 230, 230)
         )
-
-        self.captcha_buttons = [
-            self.captcha_one,
-            self.captcha_two,
-            self.captcha_three,
-            self.captcha_four,
-            self.captcha_five,
-            self.captcha_six
-        ]
 
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN and self.Text_handler.is_active():
@@ -105,6 +60,20 @@ class ImpossibleCaptcha:
                 elif self.Text_handler.is_final_text():
                     self.done = True
                     self.is_done()
+
+
+        if event.type == pygame.MOUSEBUTTONDOWN and not self.soft_done:
+            for button in self.captcha_buttons:
+                if button.is_selected(event.pos):
+                    button.toggle()
+                    return
+
+            if self.Pass.is_selected(event.pos):
+                self.evaluate_captcha()
+                return
+
+        if event.type == pygame.MOUSEBUTTONDOWN and self.soft_done:
+            self.done = True
 
         #elif event.type == pygame.MOUSEBUTTONDOWN and not self.soft_done:
         #    if self.captcha_one.is_selected(event.pos):
@@ -122,6 +91,16 @@ class ImpossibleCaptcha:
         #    if self.Pass.is_selected(event.pos):
         #        self.win()
                 
+    def evaluate_captcha(self):
+
+        self.submitted = True
+
+        any_selected = any(button.selected for button in self.captcha_buttons)
+
+        if any_selected:
+            self.lose()
+        else:
+            self.win()
 
     def win(self):
         self.soft_done = True
@@ -141,14 +120,10 @@ class ImpossibleCaptcha:
     def draw(self, screen):
         if self.Text_handler.is_active():
             self.Textbox.render()
-        else:
-            self.captcha_one.render()
-            self.captcha_two.render()
-            self.captcha_three.render()
-            self.captcha_four.render()
-            self.captcha_five.render()
-            self.captcha_six.render()
-            self.Pass.render()
+        for button in self.captcha_buttons:
+            button.render()
+
+        self.Pass.render()
 
     def is_done(self):
         return self.done
