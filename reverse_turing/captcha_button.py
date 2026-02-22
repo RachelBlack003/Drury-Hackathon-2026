@@ -1,6 +1,5 @@
 import pygame
 from pygame.surface import Surface
-from color import Color
 
 class Captcha_button:
     def __init__(self, screen, img, x, y, width, height):

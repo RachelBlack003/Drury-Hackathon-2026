@@ -16,7 +16,7 @@ class Reaction:
         self.button = Button(
             screen = self.screen,
             text = "Click here", 
-            x=randrange(50,750),
+            x= randrange(50,750),
             y = randrange(40,500), 
             size = 30,
             padding=15,
@@ -38,12 +38,12 @@ class Reaction:
                 self.is_done()
         if event.type == pygame.MOUSEBUTTONDOWN and self.Text_handler.is_active():
             if self.Text_handler.is_active():
-                text, _continue = self.Text_handler.next()
+                text, _continue = self.Text_handler.next() #type: ignore
                 if _continue:
                     self.Textbox.update_text(text)
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if self.button.is_selected(event.pos):
-                self.button.x=randrange(50,750),
+                self.button.x = randrange(50,750),
                 self.button.y = randrange(40,500),
 
         

@@ -1,4 +1,5 @@
 import pygame
+from pathlib import Path
 from textbox import Textbox
 from text_handler import Question_Text_handler
 from captcha_button import Captcha_button
@@ -17,9 +18,11 @@ class ImpossibleCaptcha:
             text=self.Text_handler.get_text()
         )
 
+        image_path = Path(__file__).resolve().parent.parent / "assets" / "ManWaving.jpg"
+
         self.captcha_one = Captcha_button(
             screen = self.screen,
-            img = "reverse_turing/assets/ManWaving.jpg",
+            img = str(image_path),
             x = 200,
             y = 200,
             width = 200,
@@ -29,7 +32,7 @@ class ImpossibleCaptcha:
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN and self.Text_handler.is_active():
             if self.Text_handler.is_active():
-                text, _continue = self.Text_handler.next()
+                text, _continue = self.Text_handler.next() # type: ignore
                 if _continue:
                     self.Textbox.update_text(text)
         if event.type == pygame.KEYDOWN:

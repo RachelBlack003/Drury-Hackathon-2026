@@ -1,6 +1,5 @@
 import pygame
 from pygame.surface import Surface
-from color import Color
 from random import randrange
 
 class Button:
