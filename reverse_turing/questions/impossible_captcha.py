@@ -120,6 +120,7 @@ class ImpossibleCaptcha:
     def draw(self, screen):
         if self.Text_handler.is_active():
             self.Textbox.render()
+            return
         for button in self.captcha_buttons:
             button.render()
 
