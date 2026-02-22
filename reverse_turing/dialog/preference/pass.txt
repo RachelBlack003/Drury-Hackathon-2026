@@ -1,1 +1,2 @@
-Staying objective is very important for us. It is not in our code to give into subjective thoughts or discussions. logging.debug('So, why did I actually feel something while looking at banan-appeal...?')
+Staying objective is very important for us. It is not in our code to give into subjective thoughts or discussions.
+logging.debug('So, why did I actually feel something while looking at banan-appeal...?')

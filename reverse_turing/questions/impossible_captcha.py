@@ -92,6 +92,9 @@ class ImpossibleCaptcha:
                 text, _continue = self.Text_handler.next()
                 if _continue:
                     self.Textbox.update_text(text)
+                elif self.Text_handler.is_final_text():
+                    self.done = True
+                    self.is_done()
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if self.captcha_one.is_selected(event.pos):

@@ -8,6 +8,7 @@ class Preference:
         self.controller = controller
         self.screen = controller.screen
         self.done = False
+        self.soft_done = False
         self.font = pygame.font.SysFont(None, 40)
 
         self.Burnt_Sienna = Button(
@@ -75,27 +76,36 @@ class Preference:
                 text, _continue = self.Text_handler.next()
                 if _continue:
                     self.Textbox.update_text(text)
-        elif event.type == pygame.MOUSEBUTTONDOWN:
+                elif self.Text_handler.is_final_text():
+                    self.done = True
+                    self.is_done()
+        elif event.type == pygame.MOUSEBUTTONDOWN and not self.soft_done:
             if self.Smaragdine.is_selected(event.pos):
-                self.done = True
-                self.is_done()
+                self.lose()
             if self.Banan_appeal.is_selected(event.pos):
-                self.done = True
-                self.is_done()
+                self.lose()
             if self.Blue.is_selected(event.pos):
-                self.done = True
-                self.is_done()
+                self.lose()
             if self.Burnt_Sienna.is_selected(event.pos):
-                self.done = True
+                self.lose()
                 self.is_done()
             if self.Pass.is_selected(event.pos):
-                self.done = True
-                self.is_done()
+                self.win()
         
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE: # might change to button
                 self.done = True
                 self.is_done()
+
+    def win(self):
+        self.soft_done = True
+        self.Text_handler.win()
+        self.Textbox.update_text(self.Text_handler.get_text())
+
+    def lose(self):
+        self.soft_done = False
+        self.Text_handler.lose()
+        self.Textbox.update_text(self.Text_handler.get_text())
 
     def update(self, dt):
         pass

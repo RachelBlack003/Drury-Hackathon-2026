@@ -24,17 +24,18 @@ class Textbox:
         # Split text and render each line
         self.text = text
         
-        words = self.text.split(' ')
+        words = self.text.split(" ")
         self.surfaces = []
+        print(words)
         
         line = ""
         for word in words:
-            if len(word) + len(line) < 52:
+            if len(word) + len(line) < 48:
                 line = line + " " + word
             else:
                 surf = self.font.render(line.strip(), True, (255, 255, 255))
                 self.surfaces.append(surf)
-                line = ""
+                line = word
         if len(line) != 0:
             surf = self.font.render(line.strip(), True, (255, 255, 255))
             self.surfaces.append(surf)

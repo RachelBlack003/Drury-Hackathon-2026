@@ -13,6 +13,7 @@ class MouseTrajectory:
     
         self.controller = controller
         self.screen = controller.screen
+        self.soft_done = False
         self.done = False
 
         self.font = pygame.font.SysFont(None, 40)
@@ -63,12 +64,15 @@ class MouseTrajectory:
                 text, _continue = self.Text_handler.next() #type: ignore
                 if _continue:
                     self.Textbox.update_text(text)
+                elif self.Text_handler.is_final_text():
+                    self.done = True
+                    self.is_done()
             return  
 
         #Trajectory Test
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.rect.collidepoint(event.pos):
-                self.done = True
+                self.soft_done = True
         
 
     def update(self, fr):
@@ -78,7 +82,7 @@ class MouseTrajectory:
 
         current_pos = pygame.mouse.get_pos()
 
-        if not self.done:
+        if not self.soft_done:
 
             if len(self.mouse_pos) == 0:
                 self.mouse_pos.append(current_pos)
@@ -128,7 +132,7 @@ class MouseTrajectory:
 
             self.mouse_pos.append(current_pos)
 
-        if self.done and not self.collected_score:
+        if self.soft_done and not self.collected_score:
             self.collected_score = True
             self.calculate_loss()
             
@@ -172,7 +176,12 @@ class MouseTrajectory:
         print("Directional RMSE (radians):", rmse)
 
         score = self.get_score(rmse)
-    
+        if score == 20:
+            self.Text_handler.win()
+            self.Textbox.update_text(self.Text_handler.get_text())
+        else:
+            self.Text_handler.lose()
+            self.Textbox.update_text(self.Text_handler.get_text())
 
         self.controller.game.results.append(score)
 

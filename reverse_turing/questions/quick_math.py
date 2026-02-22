@@ -22,6 +22,9 @@ class QuickMath:
                 text, _continue = self.Text_handler.next()
                 if _continue:
                     self.Textbox.update_text(text)
+                elif self.Text_handler.is_final_text():
+                    self.done = True
+                    self.is_done()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE: # might change to button
                 self.done = True
