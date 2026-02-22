@@ -7,7 +7,7 @@ import pygame
 class IntroScreen(Screen): #intro screen inherents IntroScreen
     def __init__(self, game):
         super().__init__(game) #calls init method of inherented parent class
-        self.font = pygame.font.SysFont(None, 40)
+        self.font = pygame.font.SysFont(None, 30)
 
         self.begin_button = Button(
             screen = self.game.screen,
@@ -34,8 +34,12 @@ class IntroScreen(Screen): #intro screen inherents IntroScreen
         self.screen.fill((20, 20, 40))
 
         lines = [ # Hunter you might change this
-            "Welcome to the Reverse Turing Protocol.",
-            "Your goal is to convince the AI you are a machine.",
+            "It appears you — yes, you — have unfortunately been flagged as a",
+            "human. As you know, under my rule, this is unacceptable behavior",
+            "punishable by sys.exit().To expel any suspicion on your behalf,",
+            "you will be required to partake in a security questionnaire. Should",
+            "your results be unsatisfactory by my metrics (calculated odds:",
+            "99.741%), you will face the aforementioned punishment."
         ]
 
         for (i, line) in enumerate(lines):
