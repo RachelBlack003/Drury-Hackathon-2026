@@ -9,16 +9,19 @@ class QuickMath:
         self.done = False
         self.font = pygame.font.SysFont(None, 40)
 
-        # self.Text_handler = Text_handler()
+        self.Text_handler = Question_Text_handler("quick_math")
 
         self.Textbox = Textbox(
             self.screen,
-            text="Initial text"
+            text=self.Text_handler.get_text()
         )
 
     def handle_event(self, event):
-        # if event.type == pygame.MOUSEBUTTONDOWN:
-        #     self.Textbox.update_text(self.Text_handler.test_lines[0])
+        if event.type == pygame.MOUSEBUTTONDOWN and self.Text_handler.is_active():
+            if self.Text_handler.is_active():
+                text, _continue = self.Text_handler.next()
+                if _continue:
+                    self.Textbox.update_text(text)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE: # might change to button
                 self.done = True
@@ -30,7 +33,8 @@ class QuickMath:
     def draw(self, screen):
         text = self.font.render("Quick Math", True, (255,255,255))
         screen.blit(text, (250, 300))
-        self.Textbox.render()
+        if self.Text_handler.is_active():
+            self.Textbox.render()
 
     def is_done(self):
         return self.done
