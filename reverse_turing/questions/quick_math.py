@@ -14,7 +14,7 @@ class QuickMath:
         self.inputed_ping = False
         self.ping_instructions = "Please set ping:"
         self.test_instructions = "Please input answer to equation above:"
-        self.font = pygame.font.SysFont(None, 40)
+        self.font = pygame.font.SysFont(None, 60)
         self.a = 0
         self.b = 0
         self.solution = 0
@@ -64,6 +64,7 @@ class QuickMath:
             self.Input_textbox.update_text()
             return
         self.Input_textbox.text = ""
+        self.Input_textbox.update_text()
         self.start_time = time.time()
         self.inputed_ping = True
         self.Second_textbox.update_text(self.test_instructions)
@@ -110,7 +111,7 @@ class QuickMath:
             self.Second_textbox.render()
             self.Input_textbox.render()
             text = self.font.render(self.equation_text, True, (255,255,255))
-            screen.blit(text, (250, 300))
+            screen.blit(text, (300, 300))
 
     def is_done(self):
         return self.done
